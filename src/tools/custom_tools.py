@@ -25,6 +25,7 @@ def buscar_cotacao(ticker: str) -> str:
     except Exception as e:
         return f"Erro ao buscar cotação da ação {ticker}: {str(e)}"
 
+
 @tool("buscar_videos")
 def buscar_videos_youtube(query: str) -> str:
     """Busca 5 vídeos relevantes no YouTube sobre a ação informada e retorna apenas os links."""
