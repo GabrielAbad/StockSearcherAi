@@ -2,9 +2,8 @@ import os
 from yahooquery import Ticker
 from langchain.tools import tool
 from googleapiclient.discovery import build
-from dotenv import load_dotenv  # ✅ Biblioteca para carregar o .env
+from dotenv import load_dotenv
 
-# Carregar variáveis de ambiente do .env
 load_dotenv()
 
 @tool("cotacao_acao")
@@ -12,10 +11,10 @@ def buscar_cotacao(ticker: str) -> str:
     """Retorna a cotação atual da ação informada."""
     try:
         acao = Ticker(ticker)
-        dados_acao = acao.price.get(ticker, {})
+        dados_acao = acao.price.get(ticker, {}) #pega o preço da ação
 
-        if not isinstance(dados_acao, dict):  # Verifica se o retorno é válido
-            return f"Erro ao obter cotação: {dados_acao}"  # Exibe o erro retornado pela API
+        if not isinstance(dados_acao, dict): 
+            return f"Erro ao obter cotação: {dados_acao}"
 
         preco = dados_acao.get("regularMarketPrice")
 
