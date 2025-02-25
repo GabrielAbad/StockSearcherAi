@@ -1,0 +1,4 @@
+crewai_env
+.env
+venv
+tests.py
