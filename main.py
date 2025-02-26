@@ -21,17 +21,13 @@ class FinancialCrew:
     youtube_video_agent = agents.youtube_video_agent()
     response_builder_agent = agents.response_builder_agent()
 
-    # Criar a tarefa de extração do nome da empresa
+    # Criar as tasks
     extract_company_task = tasks.extract_company_name(entity_extractor_agent, self.user_input)
-
-    # As tarefas que dependem da extração
     stock_price_task = tasks.fetch_stock_price(stock_price_agent, extract_company_task)
     youtube_videos_task = tasks.fetch_youtube_videos(youtube_video_agent, extract_company_task)
-
-    # Tarefa final que junta os resultados
     final_response_task = tasks.build_final_response(response_builder_agent, stock_price_task, youtube_videos_task)
 
-    # Criar a crew com todos os agentes e tarefas
+    # Criar a crew com todos os agentes e tasks
     crew = Crew(
         agents=[
             entity_extractor_agent,
